@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.custom.i18n.resources" value="global" />
+
+
+	<package name="br.com.soc.soctest" extends="struts-default" strict-method-invocation="false" >
+		
+		<action name="*Paciente" class="br.com.soc.soctest.action.PacienteAction" method="{1}" >			
+			<result name="input">/pacientes/CadastroPaciente.jsp</result>				
+			<result name="success" >/pacientes/ListarPaciente.jsp</result>				
+			<result name="REDIRECIONAR" type="redirectAction">listarPaciente</result>				
+		</action>
+		
+		<action name="*Medico" class="br.com.soc.soctest.action.MedicoAction" method="{1}" >			
+			<result name="input">/medicos/CadastroMedico.jsp</result>				
+			<result name="success" >/medicos/ListarMedicos.jsp</result>				
+			<result name="REDIRECIONAR" type="redirectAction">listarMedico</result>				
+		</action>
+		
+		<action name="*Exame" class="br.com.soc.soctest.action.ExameAction" method="{1}" >			
+			<result name="input">/exames/CadastroExame.jsp</result>				
+			<result name="success" >/exames/ListarExames.jsp</result>				
+			<result name="REDIRECIONAR" type="redirectAction">listarExame</result>				
+		</action>
+		
+		<action name="index">
+			<result>/index.jsp</result>
+			<result name="success">/thankyou.jsp</result>
+		</action>
+		
+		
+		<action name="hello"
+			class="org.apache.struts.helloworld.action.HelloWorldAction"
+			method="execute">
+			<result name="success">/HelloWorld.jsp</result>
+		</action>
+
+		<action name="register"
+			class="org.apache.struts.register.action.Register" method="execute">
+			
+			<result name="input">/register.jsp</result>
+			<result name="success">/thankyou.jsp</result>
+		</action>
+
+		<action name="registerInput"
+			class="org.apache.struts.register.action.Register" method="input">
+			<result name="input">/register.jsp</result>
+		</action>
+
+		
+	</package>
+
+</struts>
