@@ -6,7 +6,7 @@ Sistema criado com a tematica exames, sendo possivel adicionar, listar e consult
 <ul>
   <li>Java</li>
   <li>Struts2</li>
-  <li>Javascript</li>
+  <li>Bootstrap 4</li>
   <li>JDBC</li>
   <li>PostgreSQL</li>
 </ul>
