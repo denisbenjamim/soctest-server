@@ -5,7 +5,8 @@ Sistema criado com a tematica exames, sendo possivel adicionar, listar e consult
 # Tecnologias
 <ul>
   <li>Java</li>
-  <li>Struts2</li> 
+  <li>Struts2</li>
+  <li>Javascript</li>
   <li>JDBC</li>
   <li>PostgreSQL</li>
 </ul>
