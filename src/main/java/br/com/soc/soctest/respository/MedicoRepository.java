@@ -18,10 +18,8 @@ public class MedicoRepository {
 
 			preparedStatement.setString(1, medico.getNome().toUpperCase());
 			preparedStatement.setString(2, medico.getSobrenome().toUpperCase());
-			preparedStatement.setString(3, medico.getCRM().toUpperCase());			
-			
-			System.out.println("Inserido com sucesso -> " + preparedStatement.execute());
-
+			preparedStatement.setString(3, medico.getCRM().toUpperCase());	
+			preparedStatement.execute();
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -37,9 +35,9 @@ public class MedicoRepository {
 
 			preparedStatement.setString(1, medico.getNome().toUpperCase());
 			preparedStatement.setString(2, medico.getSobrenome().toUpperCase());
-			preparedStatement.setString(3, medico.getCRM().toUpperCase());			
+			preparedStatement.setString(3, medico.getCRM().toUpperCase());	
 
-			System.out.println("Atualizado com sucesso -> " + preparedStatement.execute());
+			preparedStatement.execute();
 
 		} catch (SQLException e) {
 

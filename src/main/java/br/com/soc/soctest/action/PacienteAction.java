@@ -8,46 +8,73 @@ import com.opensymphony.xwork2.ActionSupport;
 import br.com.soc.soctest.model.Paciente;
 import br.com.soc.soctest.model.Sexo;
 import br.com.soc.soctest.service.PacienteService;
+import lombok.Getter;
+import lombok.Setter;
 
 public class PacienteAction extends ActionSupport{
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
+	
+	@Getter @Setter
 	private Paciente pacienteBean;
+	
+	@Getter
 	private PacienteService service;
 	
+	@Getter @Setter
+	private Long codigo;
+	
 	public PacienteAction() {
-		this.pacienteBean = new Paciente();
 		this.service = new PacienteService();
 	}
-	
+	@Override
+	public void validate() {
+		
+		if(pacienteBean!=null) {
+			
+			if(pacienteBean.getSexo()==null) {
+				addFieldError("pacienteBean.sexo", "Selecione o Genero");
+			}
+			
+			if(pacienteBean.getNome().isEmpty()) {
+				addFieldError("pacienteBean.nome", "Informe o nome do paciente");
+			}
+			if(pacienteBean.getSobrenome().isEmpty()) {
+				addFieldError("pacienteBean.sobrenome", "Informe o sobrenome do paciente");
+			}
+			if(pacienteBean.getNascimento()==null) {
+				addFieldError("pacienteBean.nascimento", "Informe a data de nascimento");
+			}
+			if(pacienteBean.getCPF().isEmpty()) {
+				addFieldError("pacienteBean.CPF", "Informe o CPF do paciente");
+			}
+			if(pacienteBean.getRG().isEmpty()) {
+				addFieldError("pacienteBean.RG", "Informe o RG do paciente");
+			}
+			
+		}
+		
+		
+	}
 	
 	@Override
-	public String execute() {	
-		System.err.println("execute");
+	public String execute() {			
 		service.save(pacienteBean);
 		return SUCCESS;
 		
 	}
 	
 	public String cadastrar() {	
-		System.err.println("cadastrar");
-		this.pacienteBean = new Paciente();
 		return INPUT;
 	}
 	
 	public String editar() {	
-		System.err.println("editar");
-		pacienteBean = service.find(pacienteBean.getCodigo());
+		pacienteBean = service.find(codigo);
 		return INPUT;
 	}
 	
 	public String excluir() {	
-		System.err.println("excluir");
-		service.remove(pacienteBean.getCodigo());
-		pacienteBean = new Paciente();
+		service.remove(codigo);
 		return "REDIRECIONAR";
 	}
 	
@@ -62,27 +89,5 @@ public class PacienteAction extends ActionSupport{
 		return service.findOrderByName();
 	}
 	
-	
-	
-	
-	public void setService(PacienteService service) {
-		this.service = service;
-	}	
 
-	
-	public void setCodigo(Long codigo) {
-		this.pacienteBean.setCodigo(codigo); 
-	}
-	
-	public Long getCodigo() {
-		return pacienteBean.getCodigo();
-	}	
-	
-	public Paciente getPacienteBean() {
-		return pacienteBean;
-	}
-
-	public void setPacienteBean(Paciente pacienteBean) {
-		this.pacienteBean = pacienteBean;
-	}
 }

@@ -6,46 +6,67 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import br.com.soc.soctest.model.Medico;
 import br.com.soc.soctest.service.MedicoService;
+import lombok.Getter;
+import lombok.Setter;
 
 public class MedicoAction extends ActionSupport{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	@Getter @Setter
 	private Medico medicoBean;
+	
+	@Getter @Setter
+	private Long codigo;
+	
+	
+	@Getter
 	private MedicoService service;
 	
 	public MedicoAction() {
-		this.medicoBean = new Medico();
+		
 		this.service = new MedicoService();
 	}
 	
-	
+	@Override
+	public void validate() {
+		
+		if(medicoBean!=null) {
+			if(medicoBean.getNome().isEmpty()) {
+				addFieldError("medicoBean.nome", "Inform o nome do Medico");
+			}
+			
+			if(medicoBean.getSobrenome().isEmpty()) {
+				addFieldError("medicoBean.sobrenome", "Informe sobrenome do Medico");
+			}
+			
+			if(medicoBean.getCRM().isEmpty()) {
+				addFieldError("medicoBean.CRM", "Informe CRM do Medico");
+			}
+			
+		}
+		
+		
+	}
 	@Override
 	public String execute() {	
-		System.err.println("execute");
+		
 		service.save(medicoBean);
 		return SUCCESS;
 		
 	}
 	
 	public String cadastrar() {	
-		System.err.println("cadastrar");
-		this.medicoBean = new Medico();
+		
 		return INPUT;
 	}
 	
-	public String editar() {	
-		System.err.println("editar");
-		medicoBean = service.find(medicoBean.getCodigo());
+	public String editar() {		
+		medicoBean = service.find(codigo);
 		return INPUT;
 	}
 	
-	public String excluir() {	
-		System.err.println("excluir");
-		service.remove(medicoBean.getCodigo());
-		medicoBean = new Medico();
+	public String excluir() {		
+		service.remove(codigo);		
 		return "REDIRECIONAR";
 	}
 	
@@ -58,23 +79,6 @@ public class MedicoAction extends ActionSupport{
 		return service.findOrderByName();
 	}
 	
-	public void setService(MedicoService service) {
-		this.service = service;
-	}	
-	
-	public void setCodigo(Long codigo) {
-		this.medicoBean.setCodigo(codigo); 
-	}
-	
-	public Long getCodigo() {
-		return medicoBean.getCodigo();
-	}	
-	
-	public Medico getMedicoBean() {
-		return medicoBean;
-	}
 
-	public void setMedicoBean(Medico medicoBean) {
-		this.medicoBean = medicoBean;
-	}
+	
 }

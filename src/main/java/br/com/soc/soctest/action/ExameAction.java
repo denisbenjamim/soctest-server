@@ -23,38 +23,62 @@ public class ExameAction extends ActionSupport{
 	@Getter	@Setter
 	private Exame exameBean;
 	
+	private Long codigo;
+	
 	@Getter	 
 	private ExameService service;
 	
-	public ExameAction() {
-		this.exameBean = new Exame();
-		this.service = new ExameService();
+	@Override
+	public void validate() {
+		
+		if(exameBean!=null) {
+			
+			if(exameBean.getPaciente().getCodigo()==null) {
+				addFieldError("exameBean.paciente.codigo", "Selecione um paciente");
+			}
+			if(exameBean.getSolicitante().getCodigo()==null) {
+				addFieldError("exameBean.solicitante.codigo", "Selecione um Medico");
+			}
+			if(exameBean.getDescricao().isEmpty()) {
+				addFieldError("exameBean.descricao", "Inform o nome do exame");
+			}
+			if(exameBean.getDescricao().isEmpty()) {
+				addFieldError("exameBean.resultado", "Deve ser informado o resultado detalhado");
+			}
+			if(exameBean.getEmissao()==null) {
+				addFieldError("exameBean.emissao", "Informe a data para Emissão");
+			}
+			if(exameBean.getPrevisaoEntrega()==null) {
+				addFieldError("exameBean.previsaoEntrega", "Informe a data para Retirada");
+			}
+		}
+		
+		
+	}
+	
+	
+	public ExameAction() {		
+		this.service = new ExameService();		
 	}	
 	
 	@Override
-	public String execute() {	
-		
+	public String execute() {		
 		service.save(exameBean);
-		return SUCCESS;
-		
+		return SUCCESS;	
 	}
 	
 	public String cadastrar() {	
 		
-		this.exameBean = new Exame();
 		return INPUT;
 	}
 	
-	public String editar() {	
-	
-		exameBean = service.find(exameBean.getCodigo());
+	public String editar() {
+		exameBean = service.find(codigo);
 		return INPUT;
 	}
 	
-	public String excluir() {	
-		
-		service.remove(exameBean.getCodigo());
-		exameBean = new Exame();
+	public String excluir() {
+		service.remove(codigo);		
 		return "REDIRECIONAR";
 	}
 	
@@ -74,12 +98,12 @@ public class ExameAction extends ActionSupport{
 		return new MedicoService().findOrderByName();
 	}
 	
-	public void setCodigo(Long codigo) {
-		this.exameBean.setCodigo(codigo); 
+	public void setCodigo(Long codigo) {		
+		this.codigo = codigo;; 
 	}
 	
-	public Long getCodigo() {
-		return exameBean.getCodigo();
+	public Long getCodigo() {		
+		return codigo;
 	}	
 	
 

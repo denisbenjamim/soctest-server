@@ -44,7 +44,21 @@
 			<version>1.18.10</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+        <groupId>com.jgeppert.struts2.bootstrap</groupId>
+        <artifactId>struts2-bootstrap-plugin</artifactId>
+        <version>2.5.2</version>
+    </dependency>
 	</dependencies>
+	<repositories>
+    
+    <repository>
+        <id>sonatype.oss.snapshots</id>
+        <name>Sonatype OSS Snapshot Repository</name>
+        <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+        
+    </repository>
+</repositories>
 	<build>
 		<finalName>soctest</finalName>
 		<plugins>
@@ -70,6 +84,29 @@
 						<scanTarget>src/main/webapp/WEB-INF/web.xml</scanTarget>
 					</scanTargets>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.7</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.github.jsimone</groupId>
+									<artifactId>webapp-runner</artifactId>
+									<version>8.5.5.0</version>
+									<destFileName>webapp-runner.jar</destFileName>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

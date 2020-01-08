@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ExameRepositoryImplService WSDL service -->
+
+  <service name="ExameRepositoryImpl" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://respository.soctest.soc.com.br"/>
+      <parameter name="wsdlServiceElement" value="ExameRepositoryImplService"/>
+      <parameter name="schemaQualified" value="http://model.soctest.soc.com.br,http://respository.soctest.soc.com.br"/>
+      <parameter name="wsdlServicePort" value="ExameRepositoryImpl"/>
+      <parameter name="className" value="br.com.soc.soctest.respository.ExameRepositoryImpl"/>
+      <parameter name="wsdlPortType" value="ExameRepositoryImpl"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://respository.soctest.soc.com.br" xmlns:retNS="http://respository.soctest.soc.com.br" xmlns:rtns="http://model.soctest.soc.com.br" name="find" qname="operNS:find" returnQName="retNS:findReturn" returnType="rtns:Exame" soapAction="">
+        <parameter xmlns:pns="http://respository.soctest.soc.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:codigo" type="tns:long"/>
+      </operation>
+      <operation xmlns:operNS="http://respository.soctest.soc.com.br" xmlns:retNS="http://respository.soctest.soc.com.br" xmlns:rtns="http://respository.soctest.soc.com.br" xmlns:tns="http://respository.soctest.soc.com.br" name="findAll" qname="operNS:findAll" returnQName="retNS:findAllReturn" returnType="rtns:ArrayOf_xsd_anyType" returnItemQName="tns:item" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="find findAll"/>
+
+      <typeMapping xmlns:ns="http://model.soctest.soc.com.br" qname="ns:Exame" type="java:br.com.soc.soctest.model.Exame" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://respository.soctest.soc.com.br" qname="ns:&gt;findAll" type="java:br.com.soc.soctest.respository.FindAll" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://respository.soctest.soc.com.br" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_anyType" type="java:java.lang.Object[]" innerType="cmp-ns:anyType" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.soctest.soc.com.br" qname="ns:Medico" type="java:br.com.soc.soctest.model.Medico" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://respository.soctest.soc.com.br" qname="ns:&gt;findAllResponse" type="java:br.com.soc.soctest.respository.FindAllResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://respository.soctest.soc.com.br" qname="ns:&gt;find" type="java:br.com.soc.soctest.respository.Find" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://model.soctest.soc.com.br" qname="ns:Paciente" type="java:br.com.soc.soctest.model.Paciente" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://respository.soctest.soc.com.br" qname="ns:&gt;findResponse" type="java:br.com.soc.soctest.respository.FindResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

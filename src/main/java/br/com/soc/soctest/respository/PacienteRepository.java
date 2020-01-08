@@ -25,8 +25,7 @@ public class PacienteRepository {
 			preparedStatement.setDate(5, new Date(paciente.getNascimento().getTime()));
 			
 			preparedStatement.setString(6, paciente.getSexo().name());
-
-			System.out.println("Inserido com sucesso -> " + preparedStatement.execute());
+			preparedStatement.execute();
 
 		} catch (SQLException e) {
 
@@ -49,7 +48,7 @@ public class PacienteRepository {
 			preparedStatement.setString(6, paciente.getSexo().name());
 			preparedStatement.setLong(7, paciente.getCodigo());
 
-			System.out.println("Atualizado com sucesso -> " + preparedStatement.execute());
+			preparedStatement.execute();
 
 		} catch (SQLException e) {
 
