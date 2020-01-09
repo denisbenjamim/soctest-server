@@ -35,4 +35,8 @@ public class ExameService {
 	public List<Exame> findOrderByName(){
 		return exames.findAll();
 	}
+	
+	public List<Exame> findByPacienteCodigo(Long codigo){
+		return exames.findByPacienteCodigo(codigo);
+	}
 }

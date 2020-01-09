@@ -27,38 +27,44 @@
 			<artifactId>log4j-api</artifactId>
 			<version>2.13.0</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 			<version>2.13.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
-		<dependency>
-			<groupId>postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>9.1-901-1.jdbc4</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.10</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
-        <groupId>com.jgeppert.struts2.bootstrap</groupId>
-        <artifactId>struts2-bootstrap-plugin</artifactId>
-        <version>2.5.2</version>
-    </dependency>
+			<groupId>com.jgeppert.struts2.bootstrap</groupId>
+			<artifactId>struts2-bootstrap-plugin</artifactId>
+			<version>2.5.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.9</version>
+		</dependency>
+
+
+
 	</dependencies>
 	<repositories>
-    
-    <repository>
-        <id>sonatype.oss.snapshots</id>
-        <name>Sonatype OSS Snapshot Repository</name>
-        <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-        
-    </repository>
-</repositories>
+
+		<repository>
+			<id>sonatype.oss.snapshots</id>
+			<name>Sonatype OSS Snapshot Repository</name>
+			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
+		</repository>
+	</repositories>
 	<build>
 		<finalName>soctest</finalName>
 		<plugins>
@@ -85,29 +91,13 @@
 					</scanTargets>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.7</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>copy</goal>
-						</goals>
-						<configuration>
-							<artifactItems>
-								<artifactItem>
-									<groupId>com.github.jsimone</groupId>
-									<artifactId>webapp-runner</artifactId>
-									<version>8.5.5.0</version>
-									<destFileName>webapp-runner.jar</destFileName>
-								</artifactItem>
-							</artifactItems>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+			<!--plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-dependency-plugin</artifactId> 
+				<version>2.7</version> <executions> <execution> <phase>package</phase> <goals> 
+				<goal>copy</goal> </goals> <configuration> <artifactItems> <artifactItem> 
+				<groupId>com.github.jsimone</groupId> <artifactId>webapp-runner</artifactId> 
+				<version>9.0.30</version> <destFileName>webapp-runner.jar</destFileName> 
+				</artifactItem> </artifactItems> </configuration> </execution> </executions> 
+				</plugin -->
 		</plugins>
 	</build>
 </project>

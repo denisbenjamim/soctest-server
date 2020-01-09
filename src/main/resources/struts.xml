@@ -4,17 +4,18 @@
     "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
-
+	
 	<constant name="struts.devMode" value="true" />
-
+	
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 
 	<constant name="struts.ui.theme" value="simple" />
 
 	<package name="br.com.soc.soctest" extends="struts-default" strict-method-invocation="false" >
+
 		
 		<action name="index">
-			<result  name="success">/index.jsp</result>
+			<result  name="success">/inicial.jsp</result>
 			
 		</action>
 		
