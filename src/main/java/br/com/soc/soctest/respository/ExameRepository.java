@@ -99,6 +99,27 @@ public class ExameRepository {
 
 		return null;
 	}
+	public synchronized List<Exame>  findByPacienteCodigo(Long codigo) {
+		try ( PreparedStatement preparedStatement = ConnectionUtils.getPreparedStatement("select codigo_exame,data_emissao,data_previsaoentrega,m.codigo_medico codigoMedico,m.nome nomeMedico,m.sobrenome sobrenomeMedico,p.codigo_paciente codigoPaciente,p.nome nomePaciente,p.sobrenome sobrenomePaciente,descricao_exame,resultado_exame from public.exame e LEFT JOIN public.paciente p ON e.codigo_paciente = p.codigo_paciente LEFT JOIN public.medico m ON e.codigo_medico = m.codigo_medico where p.codigo_paciente=?;") ) {
+			preparedStatement.setLong(1, codigo);
+			ArrayList list  = new ArrayList<>();
+			try(ResultSet resultSet = preparedStatement.executeQuery()){
+				
+				while(resultSet.next()) {				
+					Exame exame  = build(resultSet);					
+					list.add(exame);
+				}
+			}
+			return  list;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			ConnectionUtils.close();
+		}
+		
+		return null;
+	}
 
 	
 
