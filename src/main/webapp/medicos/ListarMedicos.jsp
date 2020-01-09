@@ -75,15 +75,13 @@
 					<td class="align-middle text-center"><s:property value="CRM" /></td>
 					
 					<td class="text-right">
-						<s:url action="editarMedico" var="editar">
-							<s:param name="codigo" value="codigo"></s:param>
-						</s:url>
-						<s:a href="%{editar}" class="btn btn-warning mr-1" style="width: 75px;" >Editar</s:a>					
-					
-						<s:url action="excluirMedico" var="excluir">
-							<s:param name="codigo" value="codigo"></s:param>
-						</s:url>
-						<s:a href="%{excluir}" class="btn btn-danger " style="width: 75px;" >Excluir</s:a>					
+						 <s:url action="editarExame" var="editar">
+								<s:param name="codigo" value="codigo"></s:param>
+							</s:url>
+							<s:a class="btn btn-warning mr-1" style="width: 75px;" href="%{editar}"  >Editar</s:a>
+							
+							<s:a class="btn btn-danger mr-1" style="width: 75px;" data-codigo="%{codigo}"  data-toggle="modal"	data-target="#confirmaExclusao" >Excluir</s:a>
+											
 					</td>
 				</tr>
 			</s:iterator>
@@ -97,6 +95,31 @@
 		</tfoot>
 	</table>
 	</div>
+	<div  class="modal fade" id="confirmaExclusao" data-keyboard="false"  
+		data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		   
+		  	
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel" >Confirmação de Exclusão</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          	<span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		      	<span>Deseja excluir o medico ?</span>
+		      </div>
+		      <div class="modal-footer">
+		       	<a class="btn btn-secondary" data-dismiss="modal">Não</a>
+		       
+				<s:a id="excluir" url-base="/soctest/excluirMedico.action?codigo="  class="btn btn-primary" style="width: 75px;"  >Sim</s:a>
+						
+		      </div>
+		    </div>
+		    
+		  </div>
+</div>
 	<footer>
 		<script
 			src="<s:url value="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"/>"
@@ -104,6 +127,18 @@
 		<script
 			src="<s:url value="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"/>"
 			type="text/javascript"></script>
+			<script>
+		$('#confirmaExclusao').on('show.bs.modal',function(event){
+			var source = $(event.relatedTarget);
+			let codigo = source.data('codigo');
+			var link = $('#excluir');
+			
+			var action = link.attr('href');
+			if(!action.endsWith('=')){
+				link.attr('href',link.attr('url-base')+codigo);
+			}			
+		});
+	</script>
 	</footer>
 </body>
 </html>

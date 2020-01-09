@@ -109,5 +109,6 @@
 			src="<s:url value="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"/>"
 			type="text/javascript"></script>
 	</footer>
+	
   </body>
 </html>
