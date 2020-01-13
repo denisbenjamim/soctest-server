@@ -27,6 +27,7 @@ public class PacienteAction extends ActionSupport{
 	public PacienteAction() {
 		this.service = new PacienteService();
 	}
+	
 	@Override
 	public void validate() {
 		
@@ -50,18 +51,14 @@ public class PacienteAction extends ActionSupport{
 			}
 			if(pacienteBean.getRG().isEmpty()) {
 				addFieldError("pacienteBean.RG", "Informe o RG do paciente");
-			}
-			
-		}
-		
-		
+			}			
+		}		
 	}
 	
 	@Override
 	public String execute() {			
 		service.save(pacienteBean);
-		return SUCCESS;
-		
+		return SUCCESS;		
 	}
 	
 	public String cadastrar() {	
@@ -88,6 +85,4 @@ public class PacienteAction extends ActionSupport{
 	public List<Paciente> getPacientes(){
 		return service.findOrderByName();
 	}
-	
-
 }

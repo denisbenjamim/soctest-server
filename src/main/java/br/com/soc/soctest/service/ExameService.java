@@ -4,10 +4,11 @@ import java.util.List;
 
 import br.com.soc.soctest.model.Exame;
 import br.com.soc.soctest.respository.ExameRepository;
+import br.com.soc.soctest.respository.Repository;
 
 public class ExameService {
 
-	private ExameRepository exames;
+	private Repository<Exame> exames;
 
 	public ExameService() {
 		this.exames = new ExameRepository();
@@ -28,7 +29,7 @@ public class ExameService {
 		exames.remove(codigo);
 	}
 
-	public Exame find(Long codigo) {		
+	public Exame find(Long codigo) {			
 		return exames.find(codigo);
 	}
 	
@@ -37,6 +38,6 @@ public class ExameService {
 	}
 	
 	public List<Exame> findByPacienteCodigo(Long codigo){
-		return exames.findByPacienteCodigo(codigo);
+		return ((ExameRepository)exames).findByPacienteCodigo(codigo);
 	}
 }

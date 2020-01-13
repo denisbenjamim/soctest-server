@@ -75,7 +75,7 @@
 					<td class="align-middle text-center"><s:property value="CRM" /></td>
 					
 					<td class="text-right">
-						 <s:url action="editarExame" var="editar">
+						 <s:url action="editarMedico" var="editar">
 								<s:param name="codigo" value="codigo"></s:param>
 							</s:url>
 							<s:a class="btn btn-warning mr-1" style="width: 75px;" href="%{editar}"  >Editar</s:a>

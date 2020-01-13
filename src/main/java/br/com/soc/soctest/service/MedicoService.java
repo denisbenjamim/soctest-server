@@ -4,10 +4,11 @@ import java.util.List;
 
 import br.com.soc.soctest.model.Medico;
 import br.com.soc.soctest.respository.MedicoRepository;
+import br.com.soc.soctest.respository.Repository;
 
 public class MedicoService {
 
-	private MedicoRepository pacientes;
+	private Repository<Medico> pacientes;
 
 	public MedicoService() {
 		this.pacientes = new MedicoRepository();

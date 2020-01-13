@@ -16,8 +16,7 @@ public class MedicoAction extends ActionSupport{
 	private Medico medicoBean;
 	
 	@Getter @Setter
-	private Long codigo;
-	
+	private Long codigo;	
 	
 	@Getter
 	private MedicoService service;
@@ -41,22 +40,17 @@ public class MedicoAction extends ActionSupport{
 			
 			if(medicoBean.getCRM().isEmpty()) {
 				addFieldError("medicoBean.CRM", "Informe CRM do Medico");
-			}
-			
-		}
-		
-		
-	}
-	@Override
-	public String execute() {	
-		
-		service.save(medicoBean);
-		return SUCCESS;
-		
+			}			
+		}	
 	}
 	
-	public String cadastrar() {	
-		
+	@Override
+	public String execute() {			
+		service.save(medicoBean);
+		return SUCCESS;		
+	}
+	
+	public String cadastrar() {			
 		return INPUT;
 	}
 	
@@ -72,13 +66,9 @@ public class MedicoAction extends ActionSupport{
 	
 	public String listar() {
 		return SUCCESS;
-	}
-	
+	}	
 	
 	public List<Medico> getMedicos(){
 		return service.findOrderByName();
 	}
-	
-
-	
 }

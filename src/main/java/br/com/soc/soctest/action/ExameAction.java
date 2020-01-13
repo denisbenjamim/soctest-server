@@ -15,14 +15,12 @@ import lombok.Setter;
 
 public class ExameAction extends ActionSupport{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Getter	@Setter
 	private Exame exameBean;
 	
+	@Getter	@Setter
 	private Long codigo;
 	
 	@Getter	 
@@ -68,7 +66,6 @@ public class ExameAction extends ActionSupport{
 	}
 	
 	public String cadastrar() {	
-		
 		return INPUT;
 	}
 	
@@ -97,14 +94,5 @@ public class ExameAction extends ActionSupport{
 	public List<Medico> getMedicos(){
 		return new MedicoService().findOrderByName();
 	}
-	
-	public void setCodigo(Long codigo) {		
-		this.codigo = codigo;; 
-	}
-	
-	public Long getCodigo() {		
-		return codigo;
-	}	
-	
 
 }

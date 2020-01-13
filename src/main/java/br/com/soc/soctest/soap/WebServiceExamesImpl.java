@@ -1,10 +1,7 @@
 package br.com.soc.soctest.soap;
 
-import java.util.ArrayList;
-
 import javax.jws.WebService;
 
-import br.com.soc.soctest.model.Exame;
 import br.com.soc.soctest.service.ExameService;
 
 @WebService(endpointInterface = "br.com.soc.soctest.soap.WebServiceExames" )
@@ -34,8 +31,4 @@ public class WebServiceExamesImpl implements WebServiceExames {
 	}
 
 	
-	public static void main(String[] args) {
-		new WebServiceExamesImpl().findAllByPacienteCodigo(1l);
-		
-	}
 }

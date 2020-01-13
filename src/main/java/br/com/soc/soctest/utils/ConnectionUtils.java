@@ -17,10 +17,7 @@ public class ConnectionUtils {
 	private final static String database = "soctest";
 	private final static Integer port = 5432;
 	private static Connection con;
-	static {
-
-	}
-
+	
 	private static Properties getPropertiesDefault() {
 		Properties properties = new Properties();
 		properties.put("user", user);
@@ -50,8 +47,8 @@ public class ConnectionUtils {
 		con = DriverManager.getConnection(urlConnection(), getPropertiesDefault());
 	}
 
-	private static void connectConext()   {
-		
+	@SuppressWarnings("unused")
+	private static void connectConext()   {		
 		InitialContext context;
 		try {			
 			context = new InitialContext();			
@@ -61,8 +58,7 @@ public class ConnectionUtils {
 			e.printStackTrace();
 		} catch (SQLException e) {		
 			e.printStackTrace();
-		}
-	
+		}	
 	}
 	
 
