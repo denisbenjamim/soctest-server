@@ -11,10 +11,10 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class ConnectionUtils {
-	private final static String url = "jdbc:postgresql://localhost";
-	private final static String user = "postgres";
-	private final static String password = "postgre";
-	private final static String database = "soctest";
+	private final static String url = "jdbc:postgresql://ec2-174-129-33-147.compute-1.amazonaws.com";
+	private final static String user = "vyvndlnycahjim";
+	private final static String password = "10f27e3b75361caff2bb9653372482bf3754569f9018dc47f0adb85fa651c049";
+	private final static String database = "d3g5a2oqc8nivp";
 	private final static Integer port = 5432;
 	private static Connection con;
 	
