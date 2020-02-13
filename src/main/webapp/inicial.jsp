@@ -55,7 +55,7 @@
 		</div>
 	</nav>
 	<div style="height:85vh;background-color:#42949F;">
-		<img  src="<s:url value="img/socbg.jpg"/>" style="width: 100%; height: 100%;">
+		<img  src="<s:url value="../img/socbg.jpg"/>" style="width: 100%; height: 100%;">
 	
 	</div>
 	<footer>
