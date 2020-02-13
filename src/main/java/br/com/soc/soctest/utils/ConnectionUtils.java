@@ -20,7 +20,7 @@ public class ConnectionUtils {
 		return System.getenv("JDBC_DATABASE_URL");
 	}
 
-	@SuppressWarnings("unused")
+	
 	private static void connect() throws SQLException {
 
 		try {
