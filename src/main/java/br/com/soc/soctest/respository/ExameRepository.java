@@ -1,5 +1,6 @@
 package br.com.soc.soctest.respository;
 
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +12,7 @@ import br.com.soc.soctest.model.Exame;
 import br.com.soc.soctest.model.Exame.ExameBuilder;
 import br.com.soc.soctest.model.Medico;
 import br.com.soc.soctest.model.Paciente;
-import br.com.soc.soctest.utils.ConnectionUtils;
+import br.com.soc.soctest.utils.DataSourceFactory;
 
 public class ExameRepository extends AbstractRepository<Exame> {
 
@@ -76,7 +77,10 @@ public class ExameRepository extends AbstractRepository<Exame> {
 			  .append("LEFT JOIN public.paciente p ON e.codigo_paciente = p.codigo_paciente ")
 			  .append("LEFT JOIN public.medico m ON e.codigo_medico = m.codigo_medico ")
 			  .append("where e.codigo_paciente=?;");
-		try ( PreparedStatement preparedStatement = ConnectionUtils.getPreparedStatement(select.toString()) ) {
+		try ( 
+			final Connection con =  DataSourceFactory.getConnection();
+			final PreparedStatement preparedStatement = con.prepareStatement(select.toString())
+		) {
 			
 			preparedStatement.setLong(1, codigo);
 			List<Exame> list  = new ArrayList<>();
@@ -92,8 +96,6 @@ public class ExameRepository extends AbstractRepository<Exame> {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			ConnectionUtils.close();
 		}
 		
 		return null;

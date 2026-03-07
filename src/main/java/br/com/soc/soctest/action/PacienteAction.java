@@ -3,25 +3,20 @@ package br.com.soc.soctest.action;
 import java.util.Arrays;
 import java.util.List;
 
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 
 import br.com.soc.soctest.model.Paciente;
 import br.com.soc.soctest.model.Sexo;
 import br.com.soc.soctest.service.PacienteService;
-import lombok.Getter;
-import lombok.Setter;
 
 public class PacienteAction extends ActionSupport{
 
 	private static final long serialVersionUID = 1L;
 	
-	@Getter @Setter
 	private Paciente pacienteBean;
 	
-	@Getter
 	private PacienteService service;
 	
-	@Getter @Setter
 	private Long codigo;
 	
 	public PacienteAction() {
@@ -84,5 +79,13 @@ public class PacienteAction extends ActionSupport{
 	
 	public List<Paciente> getPacientes(){
 		return service.findOrderByName();
+	}
+
+	public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 }

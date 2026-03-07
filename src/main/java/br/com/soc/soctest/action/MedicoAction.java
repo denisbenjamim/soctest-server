@@ -2,23 +2,18 @@ package br.com.soc.soctest.action;
 
 import java.util.List;
 
-import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.ActionSupport;
 
 import br.com.soc.soctest.model.Medico;
 import br.com.soc.soctest.service.MedicoService;
-import lombok.Getter;
-import lombok.Setter;
 
 public class MedicoAction extends ActionSupport{
 	
 	private static final long serialVersionUID = 1L;
-	@Getter @Setter
 	private Medico medicoBean;
 	
-	@Getter @Setter
 	private Long codigo;	
 	
-	@Getter
 	private MedicoService service;
 	
 	public MedicoAction() {
@@ -70,5 +65,13 @@ public class MedicoAction extends ActionSupport{
 	
 	public List<Medico> getMedicos(){
 		return service.findOrderByName();
+	}
+
+	public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 }

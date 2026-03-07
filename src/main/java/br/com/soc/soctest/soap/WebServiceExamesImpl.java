@@ -1,7 +1,6 @@
 package br.com.soc.soctest.soap;
 
-import javax.jws.WebService;
-
+import jakarta.jws.WebService;
 import br.com.soc.soctest.service.ExameService;
 
 @WebService(endpointInterface = "br.com.soc.soctest.soap.WebServiceExames" )

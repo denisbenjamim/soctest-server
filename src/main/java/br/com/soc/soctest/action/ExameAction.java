@@ -1,29 +1,21 @@
 package br.com.soc.soctest.action;
 
 import java.util.List;
-
-import com.opensymphony.xwork2.ActionSupport;
-
 import br.com.soc.soctest.model.Exame;
 import br.com.soc.soctest.model.Medico;
 import br.com.soc.soctest.model.Paciente;
 import br.com.soc.soctest.service.ExameService;
 import br.com.soc.soctest.service.MedicoService;
 import br.com.soc.soctest.service.PacienteService;
-import lombok.Getter;
-import lombok.Setter;
 
-public class ExameAction extends ActionSupport{
+public class ExameAction extends org.apache.struts2.ActionSupport{
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Getter	@Setter
 	private Exame exameBean;
 	
-	@Getter	@Setter
 	private Long codigo;
 	
-	@Getter	 
 	private ExameService service;
 	
 	@Override
@@ -88,11 +80,22 @@ public class ExameAction extends ActionSupport{
 	}
 	
 	public List<Paciente> getPacientes(){
-		return new PacienteService().findOrderByName();
+		PacienteService pacienteService = new PacienteService();
+		return pacienteService.findOrderByName();
 	}
 		
 	public List<Medico> getMedicos(){
 		return new MedicoService().findOrderByName();
+	}
+
+
+	public Long getCodigo() {
+		return codigo;
+	}
+
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
 
 }

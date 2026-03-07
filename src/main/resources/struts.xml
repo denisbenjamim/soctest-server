@@ -4,39 +4,32 @@
     "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
-	
 	<constant name="struts.devMode" value="true" />
-	
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
-
 	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.i18n.search.defaultbundles.first" value="true"/>
 
-	<package name="br.com.soc.soctest" extends="struts-default" strict-method-invocation="false" >
-
-		
+	<package name="br.com.soc.soctest" extends="struts-default" strict-method-invocation="false">
 		<action name="index">
-			<result  name="success">/inicial.jsp</result>
-			
+			<result name="success">/inicial.jsp</result>
 		</action>
-		
-		<action name="*Paciente" class="br.com.soc.soctest.action.PacienteAction" method="{1}" >			
-			<result name="input">/pacientes/CadastroPaciente.jsp</result>				
-			<result name="success" >/pacientes/ListarPaciente.jsp</result>				
-			<result name="REDIRECIONAR" type="redirectAction">listarPaciente</result>				
-		</action>
-		
-		<action name="*Medico" class="br.com.soc.soctest.action.MedicoAction" method="{1}" >			
-			<result name="input">/medicos/CadastroMedico.jsp</result>				
-			<result name="success" >/medicos/ListarMedicos.jsp</result>				
-			<result name="REDIRECIONAR" type="redirectAction">listarMedico</result>				
-		</action>
-		
-		<action name="*Exame" class="br.com.soc.soctest.action.ExameAction" method="{1}" >			
-			<result name="input">/exames/CadastroExame.jsp</result>				
-			<result name="success" >/exames/ListarExames.jsp</result>				
-			<result name="REDIRECIONAR" type="redirectAction">listarExame</result>				
-		</action>
-				
-	</package>
 
+		<action name="*Paciente" class="br.com.soc.soctest.action.PacienteAction" method="{1}">
+			<result name="input">/pacientes/CadastroPaciente.jsp</result>
+			<result name="success">/pacientes/ListarPaciente.jsp</result>
+			<result name="REDIRECIONAR" type="redirectAction">listarPaciente</result>
+		</action>
+
+		<action name="*Medico" class="br.com.soc.soctest.action.MedicoAction" method="{1}">
+			<result name="input">/medicos/CadastroMedico.jsp</result>
+			<result name="success">/medicos/ListarMedicos.jsp</result>
+			<result name="REDIRECIONAR" type="redirectAction">listarMedico</result>
+		</action>
+
+		<action name="*Exame" class="br.com.soc.soctest.action.ExameAction" method="{1}">
+			<result name="input">/exames/CadastroExame.jsp</result>
+			<result name="success">/exames/ListarExames.jsp</result>
+			<result name="REDIRECIONAR" type="redirectAction">listarExame</result>
+		</action>
+	</package>
 </struts>
